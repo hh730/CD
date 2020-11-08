@@ -1,11 +1,10 @@
-
 function Card({college}) {
     return (
       <div className="card">
+            {college.promoted?<div className="promoted">Promoted</div>:""} 
         <div className="image">
             <div className="bg">
             </div>
-        {college.promoted?<div className="promoted">Promoted</div>:""} 
             <div className="rating">
                 <div className="rating-number">{college.rating}/5</div>
                 <div className="rating-text">{college.rating_remarks}</div>

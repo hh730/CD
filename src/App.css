@@ -1,4 +1,4 @@
-.container {
+.infinite-scroll-component {
   padding: 49px 50px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -105,6 +105,7 @@
   height: 33px;
   position: absolute;
   text-align: center;
+  z-index: 10000;
   right: 0;
   transform: translateY(-50%);
   clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 10% 50%, 0% 0%);

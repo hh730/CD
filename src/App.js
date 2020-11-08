@@ -1,19 +1,38 @@
 import './App.css';
 import  Card from './Card';
 import Colleges from './colleges.json';
+import React, { Component } from 'react'
+import InfiniteScroll from "react-infinite-scroll-component";
 
-function App() {
-  return (
-    <div className="App">
+export default class App extends Component {
+  state = {
+    items: Colleges['colleges'].slice(0,10) 
+  };
+
+  fetchMoreData = () => {
+    setTimeout(() => {
+      this.setState({
+        items: this.state.items.concat(Colleges['colleges'].slice(0,10))
+      });
+    }, 1500);
+  };
+
+  render() {
+    return (
+      <div className="App">
       <h1 class="heading">Colleges in North India</h1>
-      <div className="container">
-        {Colleges["colleges"].map((college)=>(
-                <Card college={college}></Card>
-        ))}
-      </div>
-    </div>
-      
-  );
-}
+      <InfiniteScroll
+          dataLength={this.state.items.length}
+          next={this.fetchMoreData}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}
+        >
+          {this.state.items.map((i, index) => (
+              <Card college={i}></Card>
 
-export default App;
+          ))}
+        </InfiniteScroll>
+    </div>
+    )
+  }
+}
