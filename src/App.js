@@ -6,14 +6,17 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 export default class App extends Component {
   state = {
-    items: Colleges['colleges'].slice(0,10) 
+    offset:10,
+    items: Colleges['colleges'].slice(0,10),
   };
 
   fetchMoreData = () => {
+
     setTimeout(() => {
-      this.setState({
-        items: this.state.items.concat(Colleges['colleges'].slice(0,10))
-      });
+      this.setState((prevState, props) => ({
+        offset: prevState.offset + 10,
+        items: this.state.items.concat(Colleges['colleges'].slice(this.state.offset,this.state.offset+10))
+    })); 
     }, 1500);
   };
 
@@ -24,7 +27,7 @@ export default class App extends Component {
       <InfiniteScroll
           dataLength={this.state.items.length}
           next={this.fetchMoreData}
-          hasMore={true}
+          hasMore={this.state.offset>=Colleges["colleges"].length?false:true}
           loader={<h4>Loading...</h4>}
         >
           {this.state.items.map((i, index) => (
