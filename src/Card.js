@@ -21,7 +21,7 @@ function Card({college}) {
         <div className="info">
             <div className="info-main">
                 <div className="name">{college.college_name}</div>
-                <div className="price">{college.original_fees}</div>
+                <div className="price">₹{college.original_fees}</div>
             </div>
             <div className="info-secondary">
                 <div className="text">
@@ -30,7 +30,7 @@ function Card({college}) {
                 </div>
                 <div className="number">
                     <div className="amount">
-                    {college.discounted_fees}
+                    ₹{college.discounted_fees}
                     </div>
                     <div className="frequency">
                     {college.fees_cycle}
@@ -44,7 +44,7 @@ function Card({college}) {
             <div className="offers">
                 <div className="discount"> {college.offertext} </div>
                 {college.amenties.map((ammenity)=>(
-                <span className="ammenities">{ammenity}</span>
+                <span className="amenties">{ammenity}</span>
                 ))}
             </div>
         </div>
